@@ -1,12 +1,17 @@
 <script setup>
-import { useAuth } from '@/router/authenticate';
-import router from '@/router';
-const { isAuthenticated } = useAuth()
+
+import {getAuth, signOut} from 'firebase/auth';
+// import router from '@/router';
+const auth = getAuth();
 const logout = () => {
-  isAuthenticated.value = false
-  alert("log out success")
-  router.push({name:'Home'})
-}
+  signOut(auth).then(() => {
+      console.log("User log out successfully");
+      // router.push('/login'); 
+    })
+    .catch((error) => {
+      console.error("Error log out:", error);
+    });
+};
 </script>
 
 
@@ -32,6 +37,18 @@ const logout = () => {
         </li>
         <li class="nav-item">
           <router-link to="/FireRegister" class="nav-link" active-class="active">Firebase Register</router-link> 
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" @click="logout">Log out</button>
+        </li>
+        <li class="nav-item">
+          <router-link to="/addbook" class="nav-link" active-class="active">Add Book</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/booklist" class="nav-link" active-class="active">Book LIst</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/editBook" class="nav-link" active-class="active">Edit Book</router-link>
         </li>
         
       </ul>

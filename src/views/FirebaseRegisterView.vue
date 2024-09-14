@@ -1,10 +1,20 @@
 <template>
-  <h1>Create an Account</h1>
-  <p><input type="text" placeholder="Email" v-model="email"/></p>
-  <p><input type="password" placeholder="Password" v-model="password" /></p>
-  <p><button @click="register">Save to Firebase</button></p>
+  <div class="container">
+    <h1>Create an Account</h1>
+    <p><input type="text" placeholder="Email" v-model="email"/></p>
+    <p><input type="password" placeholder="Password" v-model="password" /></p>
+    <p><button @click="register">Save to Firebase</button></p>
+  </div>
 </template>
-
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 240px;
+  flex-direction: column;
+}
+</style>
 <script setup>
 import { ref } from "vue"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"

@@ -5,8 +5,32 @@ import LoginView from '@/views/LoginView.vue'
 import { useAuth } from '@/router/authenticate'
 import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
 import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
+import AddBookView from '@/views/AddBookView.vue'
+import BookListView from '@/components/BookList.vue'
+import DeleteBookView from '@/views/DeleteBookView.vue'
+import EditBookView from '@/views/EditBookView.vue'
 const { isAuthenticated } = useAuth()
 const routes = [
+  {
+    path: '/editBook',
+    name: 'EditBook',
+    component: EditBookView 
+  },
+  {
+    path: '/deleteBook',
+    name: 'DeleteBook',
+    component: DeleteBookView
+  },
+  {
+    path: '/booklist',
+    name: 'BookList',
+    component: BookListView
+  },
+  {
+    path: '/addbook',
+    name: 'AddBook',
+    component: AddBookView
+  },
   {
     path: '/FireRegister',
     name: 'FireRegister',
