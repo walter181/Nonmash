@@ -34,13 +34,11 @@ const signin = () => {
       {
         alert("admin")
         router.push('About')
-        
       }else
       {
         alert("user")
         router.push('/')
       }
-
       console.log("Firebase Register Successful!", data)
       // router.push("/")
       console.log(auth.currentUser) // To check the current User signed in

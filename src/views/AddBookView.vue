@@ -15,44 +15,34 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
-import db from '../firebase/init.js';
-import { collection, addDoc } from 'firebase/firestore';
-// import BookList from '../components/BookList.vue';
+import axios from 'axios';
 
-export default {
-  setup() {
-    const isbn = ref('');
-    const name = ref('');
+// Define reactive variables to hold book information (ISBN and name)
+const isbn = ref('');
+const name = ref('');
 
-    const addBook = async () => {
-      try {
-        const isbnNumber = Number(isbn.value);
-        if (isNaN(isbnNumber)) {
-          alert('ISBN must be a valid number');
-          return;
-        }
-        await addDoc(collection(db, 'books'), {
-          isbn: isbnNumber,
-          name: name.value
-        });
-        isbn.value = '';
-        name.value = '';
-        alert('Book added successfully!');
-      } catch (error) {
-        console.error('Error adding book: ', error);
-      }
-    };
+// Function to add a new book by sending a POST request
+const addBook = async () => {
+  try {
+    // Send a POST request with book details (ISBN and name)
+    const response = await axios.post('https://addbooks-46kplcjz2a-uc.a.run.app', {
+      isbn: isbn.value,  // Access the value of the ref object
+      name: name.value
+    });
 
-    return {
-      isbn,
-      name,
-      addBook
-    };
-  },
-  // components: {
-  //   BookList
-  // }
+    // Notify the user of success
+    alert('Add book succeeded');
+    console.log('Response:', response.data);
+    isbn.value = '';
+    name.value = '';
+
+  } catch (error) {
+    // Log and notify the user of any error
+    console.error('Error adding book:', error);
+    alert('Failed to add book');
+  }
 };
+
 </script>

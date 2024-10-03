@@ -50,6 +50,15 @@ const logout = () => {
         <li class="nav-item">
           <router-link to="/editBook" class="nav-link" active-class="active">Edit Book</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/GetBookCount" class="nav-link" active-class="active">Get Book Count</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/WeatherCheck" class="nav-link" active-class="active">Get Weather</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/CountBookAPI" class="nav-link" active-class="active">Count Book</router-link>
+        </li>
         
       </ul>
     </header>

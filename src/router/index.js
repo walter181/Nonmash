@@ -9,12 +9,30 @@ import AddBookView from '@/views/AddBookView.vue'
 import BookListView from '@/components/BookList.vue'
 import DeleteBookView from '@/views/DeleteBookView.vue'
 import EditBookView from '@/views/EditBookView.vue'
+import GetBookCountView from '@/views/GetBookCountView.vue'
+import WeatherView from '../views/WeatherView.vue'
+import CountBookAPI from '../views/CountBookAPI.vue'
 const { isAuthenticated } = useAuth()
 const routes = [
   {
+    path: '/CountBookAPI',
+    name: 'CountBookAPI',
+    component: CountBookAPI
+  },
+  {
+    path: '/WeatherCheck',
+    name: 'WeatherCheck',
+    component: WeatherView
+  },
+  {
+    path: '/GetBookCount',
+    name: 'GetBookCount',
+    component: GetBookCountView
+  },
+  {
     path: '/editBook',
     name: 'EditBook',
-    component: EditBookView 
+    component: EditBookView
   },
   {
     path: '/deleteBook',
