@@ -26,28 +26,23 @@ exports.countBooks = onRequest((req, res) => {
   })
 })
 
-// Function to add a new book to the Firestore collection
 // eslint-disable-next-line no-undef
-exports.addBooks = onRequest((req, res) => {
-  cors(req, res, async () => {
-    try {
-      // Destructure isbn and name from the request body
-      const { isbn, name } = req.body
+const sgMail = require('@sendgrid/mail')
 
-      // Check if both isbn and name are provided
-      if (!isbn || !name) {
-        return res.status(400).send('ISBN and name are required')
-      }
-
-      // Add the new book to the Firestore collection
-      await admin.firestore().collection('books').add({ isbn: isbn, name: name })
-
-      // Send success response
-      res.status(200).send('Book added successfully')
-    } catch (error) {
-      // Log the error and send a 500 status response
-      console.error('Error adding book:', error.message)
-      res.status(500).send('Error adding book')
-    }
+// eslint-disable-next-line no-undef
+sgMail.setApiKey(functions.config().sendgrid.api_key)
+const msg = {
+  to: email, // Change to your recipient
+  from: 'test@example.com', // Change to your verified sender
+  subject: 'Sending with SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+}
+sgMail
+  .send(msg)
+  .then(() => {
+    console.log('Email sent')
   })
-})
+  .catch((error) => {
+    console.error(error)
+  })

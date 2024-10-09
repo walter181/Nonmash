@@ -35,8 +35,6 @@ const addBook = async () => {
     // Notify the user of success
     alert('Add book succeeded');
     console.log('Response:', response.data);
-    isbn.value = '';
-    name.value = '';
 
   } catch (error) {
     // Log and notify the user of any error
