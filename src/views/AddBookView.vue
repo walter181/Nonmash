@@ -30,7 +30,11 @@ const addBook = async () => {
     const response = await axios.post('https://addbooks-46kplcjz2a-uc.a.run.app', {
       isbn: isbn.value,  // Access the value of the ref object
       name: name.value
-    });
+    }, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
 
     // Notify the user of success
     alert('Add book succeeded');
