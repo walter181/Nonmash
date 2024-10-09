@@ -4,14 +4,18 @@ import cors from 'cors'
 const app = express()
 const port = process.env.PORT || 3000
 
-// 使用 CORS 中间件来启用跨域支持
 app.use(
   cors({
-    origin: 'https://nonmash.pages.dev', // 只允许从 https://nonmash.pages.dev 发起的请求
-    methods: ['GET', 'POST', 'OPTIONS'], // 允许的 HTTP 方法
-    allowedHeaders: ['Content-Type'] // 允许的请求头
+    origin: 'https://nonmash.pages.dev',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
   })
 )
+
+app.use((req, res, next) => {
+  console.log('CORS headers set for:', req.method, req.url)
+  next()
+})
 
 // 处理预检请求（OPTIONS 请求）
 app.options('*', cors())
