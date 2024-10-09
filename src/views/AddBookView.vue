@@ -19,25 +19,25 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
-// Define reactive variables to hold book information (ISBN and name)
+// 定义响应变量来存储书籍信息（ISBN 和名字）
 const isbn = ref('');
 const name = ref('');
 
-// Function to add a new book by sending a POST request
+// 添加书籍的函数，发送 POST 请求
 const addBook = async () => {
   try {
-    // Send a POST request with book details (ISBN and name)
-    const response = await axios.post('https://addbooks-46kplcjz2a-uc.a.run.app', {
-      isbn: isbn.value,  // Access the value of the ref object
+    // 使用代理发送 POST 请求
+    const response = await axios.post('/api', {
+      isbn: isbn.value,
       name: name.value
     });
 
-    // Notify the user of success
+    // 成功提示
     alert('Add book succeeded');
     console.log('Response:', response.data);
 
   } catch (error) {
-    // Log and notify the user of any error
+    // 记录和通知用户错误信息
     console.error('Error adding book:', error);
     alert('Failed to add book');
   }
